@@ -21,7 +21,7 @@ def get_data():
         data = list(csv_data_collection.find({"uploaded_by": email}, {"_id": 0}))
         
         if not data:
-            return jsonify([{"message": "No data yet"}]), 200, 200
+            return jsonify([{"message": "No data yet"}]), 200
         
         return jsonify(data), 200
     
