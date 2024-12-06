@@ -3,9 +3,9 @@ from app.database import get_collection
 from app.auth.jwt_required import jwt_required
 from werkzeug.security import check_password_hash, generate_password_hash
 
-bp = Blueprint('profile', __name__)
+bp = Blueprint('change-password', __name__)
 
-@bp.route('/profile/change-password', methods=['POST'])
+@bp.route('/change-password', methods=['POST'])
 @jwt_required
 def change_password():
     email = request.email

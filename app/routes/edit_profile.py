@@ -2,9 +2,9 @@ from flask import Blueprint, request, jsonify
 from app.database import get_collection
 from app.auth.jwt_required import jwt_required
 
-bp = Blueprint('profile', __name__)
+bp = Blueprint('edit_profile', __name__)
 
-@bp.route('/profile/edit-profile', methods=['PUT'])
+@bp.route('/edit-profile', methods=['PUT'])
 @jwt_required
 def update_data():
     email = request.email
