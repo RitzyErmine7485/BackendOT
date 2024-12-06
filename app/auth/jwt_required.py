@@ -11,8 +11,8 @@ def jwt_required(f):
 
         try:
             token = token.replace('Bearer ', '')
-            username = decode_jwt(token)
-            request.username = username 
+            email = decode_jwt(token)
+            request.email = email 
         except Exception as e:
             return jsonify({"error": str(e)}), 403
         
