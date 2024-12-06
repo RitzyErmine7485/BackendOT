@@ -10,9 +10,8 @@ bp = Blueprint('upload', __name__)
 @bp.route('/upload', methods=['POST'])
 @jwt_required
 def upload_csv():
-    username = request.username
+    email = request.email
     
-    # Validate file upload
     if 'file' not in request.files:
         return jsonify({"error": "No file provided"}), 400
     
@@ -25,6 +24,13 @@ def upload_csv():
         df = pd.read_csv(io.StringIO(file.stream.read().decode("UTF-8")))
         data_json = df.to_dict(orient='records')
         upload_date = datetime.now().isoformat()
+
+        user = collection.find_one({"email": email}, {"_id": 0, "username": 1})
+        
+        if not user:
+            return jsonify({"message": "User not found"}), 404
+
+        username = user["username"]
 
         file_metadata = {
             "file_name": file.filename,

@@ -3,7 +3,6 @@ from flask_cors import CORS
 from .routes import get_data, upload, signup, login, profile
 from .middleware.error_handler import handle_errors
 from .database import init_db
-from app.config import Config
 
 def create_app():
     app = Flask(__name__)
