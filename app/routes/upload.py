@@ -12,7 +12,10 @@ bp = Blueprint('upload', __name__)
 def upload_csv():
     email = request.email
     
-    file = request.files
+    file = list(request.files.values())[0]
+    
+    if not file.filename.endswith('.csv'):
+        return jsonify({"error": "File must be a CSV"}), 400
     
     try:
         df = pd.read_csv(io.StringIO(file.stream.read().decode("UTF-8")))
