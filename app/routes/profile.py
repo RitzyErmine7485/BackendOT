@@ -17,8 +17,6 @@ def get_data():
         if not user:
             return jsonify({"message": "No data found for this profile"}), 404
         
-        user["imageUri"] = user.get("imageUri", "https://media.istockphoto.com/id/610003972/vector/vector-businessman-black-silhouette-isolated.jpg?s=612x612&w=0&k=20&c=Iu6j0zFZBkswfq8VLVW8XmTLLxTLM63bfvI6uXdkacM=")
-        
         return jsonify(user), 200
 
     except Exception as e:

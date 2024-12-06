@@ -26,7 +26,8 @@ def login():
         user_data = {
             "email": email,
             "username": username,
-            "password": hashed_password
+            "password": hashed_password,
+            "imageUri": "https://media.istockphoto.com/id/610003972/vector/vector-businessman-black-silhouette-isolated.jpg?s=612x612&w=0&k=20&c=Iu6j0zFZBkswfq8VLVW8XmTLLxTLM63bfvI6uXdkacM=",
         }
         
         collection.insert_one(user_data)
