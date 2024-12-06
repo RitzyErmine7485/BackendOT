@@ -12,15 +12,13 @@ def get_data():
     try:
         collection = get_collection("users")
         
-        user = collection.find_one({"email": email}, {"_id": 0, "username": 1})
+        user = collection.find_one({"email": email})
         
         if not user:
             return jsonify({"message": "User not found"}), 404
 
-        username = user["username"]
-
         csv_data_collection = get_collection("csv_data")
-        data = list(csv_data_collection.find({"uploaded_by": username}, {"_id": 0}))
+        data = list(csv_data_collection.find({"uploaded_by": email}, {"_id": 0}))
         
         if not data:
             return jsonify({"message": "No data found for this user"}), 404
