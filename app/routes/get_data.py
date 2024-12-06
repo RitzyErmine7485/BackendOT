@@ -5,7 +5,7 @@ from app.auth.jwt_required import jwt_required
 bp = Blueprint('data', __name__)
 
 @bp.route('/get-data', methods=['GET'])
-@jwt_required  # Ensure the user is authenticated
+@jwt_required
 def get_data():
     username = request.username
     
