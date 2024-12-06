@@ -1,9 +1,8 @@
 import jwt
 import datetime
-from flask import current_app
+from app.config import Config
 
-# Secret key for JWT encoding and decoding (should be kept secret in production)
-SECRET_KEY = current_app.config['SECRET_KEY']
+SECRET_KEY = Config.SECRET_KEY
 
 def generate_jwt(username):
     """Generate JWT token for a given username."""
