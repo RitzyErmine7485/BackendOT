@@ -9,7 +9,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, resources={r"/*": {"origins": "ot-back-f7fsd2cag3hvcccb.canadacentral-01.azurewebsites.net"}})
 
 client = MongoClient(os.getenv("MONGO_DB"))
 db = client["onetap"]
