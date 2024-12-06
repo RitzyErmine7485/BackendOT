@@ -25,6 +25,7 @@ def upload_csv():
         data_json = df.to_dict(orient='records')
         upload_date = datetime.now().isoformat()
 
+        collection = get_collection("users")
         user = collection.find_one({"email": email}, {"_id": 0, "username": 1})
         
         if not user:
