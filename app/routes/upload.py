@@ -12,7 +12,7 @@ bp = Blueprint('upload', __name__)
 def upload_csv():
     email = request.email
     
-    file = request.files['file']
+    file = request.files
     
     if not file.filename.endswith('.csv'):
         return jsonify({"error": "File must be a CSV"}), 400
