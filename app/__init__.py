@@ -8,13 +8,10 @@ def create_app():
     app = Flask(__name__)
     CORS(app)
     
-    # Initialize database
     init_db(app)
 
-    # Register middleware
     app.register_error_handler(Exception, handle_errors)
 
-    # Register routes
     app.register_blueprint(upload.bp)
     app.register_blueprint(get_data.bp)
 
