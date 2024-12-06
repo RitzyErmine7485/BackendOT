@@ -15,4 +15,4 @@ COPY . .
 EXPOSE 5000
 
 # Define the entry point for the container
-ENTRYPOINT ["gunicorn", "--bind", "0.0.0.0:5000", "back:app"]
+ENTRYPOINT ["gunicorn", "--bind", "0.0.0.0:5000", "app:app"]
