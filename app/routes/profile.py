@@ -6,7 +6,7 @@ bp = Blueprint('profile', __name__)
 
 @bp.route('/profile', methods=['GET'])
 @jwt_required
-def get_data():
+def profile():
     email = request.email
 
     try:

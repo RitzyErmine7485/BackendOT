@@ -5,7 +5,7 @@ from app.database import get_collection
 bp = Blueprint('signup', __name__)
 
 @bp.route('/signup', methods=['POST'])
-def login():
+def signup():
     data = request.get_json()
     
     if not data or not data.get("email") or not data.get("username") or not data.get("password"):

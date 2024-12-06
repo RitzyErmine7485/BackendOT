@@ -6,7 +6,7 @@ bp = Blueprint('edit_profile', __name__)
 
 @bp.route('/edit-profile', methods=['PUT'])
 @jwt_required
-def update_data():
+def edit_profile():
     email = request.email
     data = request.get_json()
 
