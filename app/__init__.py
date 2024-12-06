@@ -11,7 +11,6 @@ def create_app():
     
     init_db(app)
 
-    app.config[Config.SECRET_KEY]
     app.register_error_handler(Exception, handle_errors)
 
     app.register_blueprint(upload.bp)
