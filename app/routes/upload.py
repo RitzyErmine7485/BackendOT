@@ -14,9 +14,6 @@ def upload_csv():
     
     file = request.files
     
-    if not file.filename.endswith('.csv'):
-        return jsonify({"error": "File must be a CSV"}), 400
-    
     try:
         df = pd.read_csv(io.StringIO(file.stream.read().decode("UTF-8")))
         data_json = df.to_dict(orient='records')
