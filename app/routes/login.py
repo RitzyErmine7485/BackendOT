@@ -9,23 +9,23 @@ bp = Blueprint('login', __name__)
 def login():
     data = request.get_json()
     
-    if not data or not data.get("username") or not data.get("password"):
+    if not data or not data.get("email") or not data.get("password"):
         return jsonify({"error": "Username and password are required"}), 400
     
-    username = data["username"]
+    email = data["email"]
     password = data["password"]
 
     try:
         collection = get_collection("users")
         
-        user = collection.find_one({"username": username})
-        if not user:
+        email = collection.find_one({"email": email})
+        if not email:
             return jsonify({"error": "User not found"}), 404
 
-        if not check_password_hash(user["password"], password):
+        if not check_password_hash(email["password"], password):
             return jsonify({"error": "Invalid password"}), 401
         
-        token = generate_jwt(username)
+        token = generate_jwt(email)
         
         return jsonify({"message": "Login successful", "token": token}), 200
 
