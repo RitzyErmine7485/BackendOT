@@ -1,6 +1,6 @@
 from flask import Flask
 from flask_cors import CORS
-from .routes import upload_routes, data_routes
+from .routes import get_data, upload
 from .middleware.error_handler import handle_errors
 from .database import init_db
 
@@ -15,7 +15,7 @@ def create_app():
     app.register_error_handler(Exception, handle_errors)
 
     # Register routes
-    app.register_blueprint(upload_routes.bp)
-    app.register_blueprint(data_routes.bp)
+    app.register_blueprint(upload.bp)
+    app.register_blueprint(get_data.bp)
 
     return app
