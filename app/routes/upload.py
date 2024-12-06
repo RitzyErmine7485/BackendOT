@@ -3,6 +3,7 @@ import pandas as pd
 import io
 from app.database import get_collection
 from app.auth.jwt_required import jwt_required
+from datetime import datetime
 
 bp = Blueprint('upload', __name__)
 
@@ -23,10 +24,12 @@ def upload_csv():
     try:
         df = pd.read_csv(io.StringIO(file.stream.read().decode("UTF-8")))
         data_json = df.to_dict(orient='records')
+        upload_date = datetime.now().isoformat()
 
         file_metadata = {
             "file_name": file.filename,
             "uploaded_by": username,
+            "upload_date": upload_date,
             "data": data_json
         }
 
