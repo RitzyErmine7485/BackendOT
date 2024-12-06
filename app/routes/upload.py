@@ -22,17 +22,9 @@ def upload_csv():
         data_json = df.to_dict(orient='records')
         upload_date = datetime.now().isoformat()
 
-        collection = get_collection("users")
-        user = collection.find_one({"email": email}, {"_id": 0, "username": 1})
-        
-        if not user:
-            return jsonify({"message": "User not found"}), 404
-
-        username = user["username"]
-
         file_metadata = {
             "file_name": file.filename,
-            "uploaded_by": username,
+            "uploaded_by": email,
             "upload_date": upload_date,
             "data": data_json
         }
