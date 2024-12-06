@@ -10,7 +10,7 @@ def login():
     data = request.get_json()
     
     if not data or not data.get("email") or not data.get("password"):
-        return jsonify({"error": "Username and password are required"}), 400
+        return jsonify({"error": "Email and password are required"}), 400
     
     email = data["email"]
     password = data["password"]
@@ -19,13 +19,13 @@ def login():
         collection = get_collection("users")
         
         user = collection.find_one({"email": email})
-        if not email:
+        if not user:
             return jsonify({"error": "User not found"}), 404
 
-        if not check_password_hash(email["password"], password):
+        if not check_password_hash(user["password"], password):
             return jsonify({"error": "Invalid password"}), 401
         
-        token = generate_jwt(user)
+        token = generate_jwt(email)
         
         return jsonify({"message": "Login successful", "token": token}), 200
 
