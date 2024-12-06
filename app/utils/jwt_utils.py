@@ -8,7 +8,7 @@ def generate_jwt(user):
     """Generate JWT token for a given user."""
     expiration_time = datetime.datetime.now(datetime.timezone.utc) + datetime.timedelta(hours=1)
     payload = {
-        'email': user,
+        'email': user['email'],
         'exp': expiration_time
     }
     
