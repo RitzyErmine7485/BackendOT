@@ -7,6 +7,7 @@ bp = Blueprint('csv', __name__)
 @bp.route('/get-csv', methods=['POST'])
 @jwt_required
 def get_csv():
+    email = request.email
     data = request.get_json()
 
     file_name = data['file_name']
