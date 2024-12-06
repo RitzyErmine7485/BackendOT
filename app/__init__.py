@@ -1,6 +1,6 @@
 from flask import Flask
 from flask_cors import CORS
-from .routes import get_data, upload, signup, login, profile, edit_profile, change_password, delete_user
+from .routes import get_data, upload, signup, login, profile, edit_profile, change_password, delete_user, get_csv
 from .middleware.error_handler import handle_errors
 from .database import init_db
 
@@ -20,5 +20,6 @@ def create_app():
     app.register_blueprint(edit_profile.bp)
     app.register_blueprint(change_password.bp)
     app.register_blueprint(delete_user.bp)
+    app.register_blueprint(get_csv.bp)
 
     return app
