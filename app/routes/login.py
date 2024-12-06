@@ -18,14 +18,14 @@ def login():
     try:
         collection = get_collection("users")
         
-        email = collection.find_one({"email": email})
+        user = collection.find_one({"email": email})
         if not email:
             return jsonify({"error": "User not found"}), 404
 
         if not check_password_hash(email["password"], password):
             return jsonify({"error": "Invalid password"}), 401
         
-        token = generate_jwt(email)
+        token = generate_jwt(user)
         
         return jsonify({"message": "Login successful", "token": token}), 200
 

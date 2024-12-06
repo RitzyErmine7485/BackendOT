@@ -4,11 +4,11 @@ from app.config import Config
 
 SECRET_KEY = Config.SECRET_KEY
 
-def generate_jwt(email):
-    """Generate JWT token for a given email."""
+def generate_jwt(user):
+    """Generate JWT token for a given user."""
     expiration_time = datetime.datetime.now(datetime.timezone.utc) + datetime.timedelta(hours=1)
     payload = {
-        'email': email,
+        'email': user,
         'exp': expiration_time
     }
     
@@ -16,10 +16,10 @@ def generate_jwt(email):
     return token
 
 def decode_jwt(token):
-    """Decode JWT token and extract the email."""
+    """Decode JWT token and extract the user."""
     try:
         decoded = jwt.decode(token, SECRET_KEY, algorithms=['HS256'])
-        return decoded['email']
+        return decoded['user']
     except jwt.ExpiredSignatureError:
         raise Exception("Token has expired")
     except jwt.InvalidTokenError:
