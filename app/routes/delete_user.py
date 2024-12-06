@@ -10,6 +10,10 @@ bp = Blueprint('delete_user', __name__)
 def delete_user():
     try:
         email = request.email
+
+        csv_collection = get_collection('csv_data')
+
+        csv_collection.delete_many({'uploaded_by': email})
         
         users_collection = get_collection('users')
         
