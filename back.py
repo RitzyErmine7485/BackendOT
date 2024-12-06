@@ -9,13 +9,13 @@ from dotenv import load_dotenv
 load_dotenv()
 
 app = Flask(__name__)
-CORS(app, resources={r"/*": {"origins": "ot-back-f7fsd2cag3hvcccb.canadacentral-01.azurewebsites.net"}})
+CORS(app)
 
 client = MongoClient(os.getenv("MONGO_DB"))
 db = client["onetap"]
 collection = db["csv_data"]
 
-@app.route('/upload', methods=['POST'])
+@app.route('/upload', methods=['POST', 'GET'])
 def upload_csv():
     if 'file' not in request.files:
         return jsonify({"error": "No file provided"}), 400
