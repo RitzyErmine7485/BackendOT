@@ -12,9 +12,6 @@ bp = Blueprint('upload', __name__)
 def upload_csv():
     email = request.email
     
-    if 'file' not in request.files:
-        return jsonify({"error": "No file provided"}), 400
-    
     file = request.files['file']
     
     if not file.filename.endswith('.csv'):
